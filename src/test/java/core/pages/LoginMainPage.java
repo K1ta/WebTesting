@@ -2,6 +2,7 @@ package core.pages;
 
 import core.HelperBase;
 import model.TestBot;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -19,17 +20,14 @@ public class LoginMainPage extends HelperBase {
     }
 
     protected void check() {
-        new WebDriverWait(driver, 5).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                return isElementPresent(EMAIL) && isElementPresent(PASSWORD);
-            }
-        });
+        Assert.assertTrue("Поле ввода email не загрузилось", wait
+                .until(driver -> isElementPresent(EMAIL)));
 
-        new WebDriverWait(driver, 5)
-                .until(ExpectedConditions.visibilityOfElementLocated(EMAIL));
+        Assert.assertTrue("Поле ввода пароля не загрузилось", wait
+                .until(driver -> isElementPresent(PASSWORD)));
 
-        new WebDriverWait(driver, 5)
-                .until(ExpectedConditions.visibilityOfElementLocated(PASSWORD));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(EMAIL));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PASSWORD));
     }
 
     public MyMainPage doLogin(TestBot bot) {

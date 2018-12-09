@@ -2,6 +2,7 @@ package core.pages;
 
 import core.HelperBase;
 import core.PersonalDataWrapper;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,15 +17,16 @@ public class MyAboutPage extends HelperBase {
     private static final By PROFILE = By.xpath("//*[@class='compact-profile']");
     private static final By HOMETOWN = By.xpath("//*[@class='user-profile_i'][2]//*[@data-type='TEXT']");
     private static final By CITY_OF_RESIDENCE = By.xpath("//*[@class='user-profile_i'][3]//*[@data-type='TEXT']");
-    private static final By MODIFY_DATA = By.xpath("(//*[@class='user-profile_lk-o'])[1]");
     private static final By BIRTHDATE = By.xpath("//*[@class='user-profile_i_value' and @data-type='AGE']");
     private static final By FULL_NAME = By.xpath("//*[@class='compact-profile_a ellip-i']");
-    private static final By ADD_WORK = By.xpath("(//*[@class='user-profile_lk-o'])[2]");
-    private static final By ADD_SCHOOL = By.xpath("(//*[@class='user-profile_lk-o'])[3]");
-    private static final By ADD_ARMY = By.xpath("(//*[@class='user-profile_lk-o'])[4]");
+
+    private static final By MODIFY_DATA_BUTTON = By.xpath("(//*[@class='user-profile_lk-o'])[1]");
+    private static final By ADD_WORK_BUTTON = By.xpath("(//*[@class='user-profile_lk-o'])[2]");
+    private static final By ADD_SCHOOL_BUTTON = By.xpath("(//*[@class='user-profile_lk-o'])[3]");
+    private static final By ADD_ARMY_BUTTON = By.xpath("(//*[@class='user-profile_lk-o'])[4]");
 
     private static final By SCHOOL_INPUT = By.xpath("//*[@id='st.layer.schoolText']");
-    private static final By SCHOOL_ELEMENT = By.xpath("//*[@class='sug_it-div']");
+    private static final By SCHOOL_SUGGEST = By.xpath("//*[@class='sug_it-div']");
     private static final By SCHOOL_CLOSE = By.xpath("//*[@id='nohook_modal_close']");
     private static final By JOIN = By.xpath("//*[@name='button_join']");
 
@@ -42,25 +44,24 @@ public class MyAboutPage extends HelperBase {
     }
 
     protected void check() {
+        Assert.assertTrue("Кнопка профиля не загрузилась", wait
+                .until(driver -> isElementPresent(PROFILE)));
 
+        Assert.assertTrue("Кнопка профиля не загрузилась", wait
+                .until(driver -> isElementPresent(PROFILE)));
     }
 
-    public void addSchoold(String school) {
+    public void addSchool(String school) {
         By locator = By.xpath(SCHOOL_START + school + SCHOOL_END);
         if (isElementPresent(locator)) {
             click(locator);
             GroupMainPage groupMainPage = new GroupMainPage(driver);
             groupMainPage.leaveGroup();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             driver.navigate().back();
         }
-        click(ADD_SCHOOL);
+        click(ADD_SCHOOL_BUTTON);
         type(school, SCHOOL_INPUT);
-        click(SCHOOL_ELEMENT);
+        click(SCHOOL_SUGGEST);
         click(JOIN);
         if (isElementPresent(SCHOOL_CLOSE)) {
             click(SCHOOL_CLOSE);
@@ -113,7 +114,7 @@ public class MyAboutPage extends HelperBase {
     }
 
     public PersonalDataWrapper modifyPersonalData() {
-        click(MODIFY_DATA);
+        click(MODIFY_DATA_BUTTON);
         return new PersonalDataWrapper(driver);
     }
 

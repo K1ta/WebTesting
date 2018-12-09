@@ -10,12 +10,14 @@ import java.util.List;
 public abstract class HelperBase {
     protected WebDriver driver;
     protected long WAIT_TIME = 5;
+    protected WebDriverWait wait;
     private boolean acceptNextAlert = true;
     private Actions actions;
 
     protected HelperBase(WebDriver driver) {
         this.driver = driver;
         actions = new Actions(driver);
+        wait = new WebDriverWait(driver, WAIT_TIME);
         check();
     }
 

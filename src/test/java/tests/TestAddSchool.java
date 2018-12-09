@@ -16,7 +16,7 @@ public class TestAddSchool extends TestBase {
         myMainPage.clickMore();
         MyAboutPage myAboutPage = myMainPage.clickAbout();
         String expected = "2 школа";
-        myAboutPage.addSchoold(expected);
+        myAboutPage.addSchool(expected);
         MyProfilePage profilePage = myAboutPage.clickProfile();
         String actual = profilePage.getSchool();
         Assert.assertEquals(expected, actual);

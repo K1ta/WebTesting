@@ -21,10 +21,10 @@ public class MyGroupMainPage extends HelperBase {
     }
 
     protected void check() {
-        (new WebDriverWait(driver, 5)).until((ExpectedCondition<Boolean>) driver -> isElementPresent(CREATE_GROUP));
+        Assert.assertTrue("Кнопка 'Создать группу' не загрузилась", wait
+                .until(driver -> isElementPresent(CREATE_GROUP)));
 
-        (new WebDriverWait(driver, 5))
-                .until(ExpectedConditions.visibilityOfElementLocated(CREATE_GROUP));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CREATE_GROUP));
     }
 
     public void clickCreateButton() {

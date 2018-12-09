@@ -1,8 +1,10 @@
 package core.pages;
 
 import core.HelperBase;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GroupMainPage extends HelperBase {
 
@@ -15,11 +17,15 @@ public class GroupMainPage extends HelperBase {
 
     @Override
     protected void check() {
+        Assert.assertTrue("Кнопка 'Покинуть группу' не загрузилась", wait
+                .until(driver -> isElementPresent(LEAVE)));
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LEAVE));
     }
 
     public void leaveGroup() {
         click(LEAVE);
         click(LEAVE_PLEASE);
+        wait.until(ExpectedConditions.stalenessOf(driver.findElement(LEAVE_PLEASE)));
     }
 }
