@@ -16,4 +16,8 @@ public class TestBot {
     public String getPassword() {
         return password;
     }
+
+    public static TestBot getDefault() {
+        return new TestBot("kobalt31@mail.ru", "2017OdnoPassword!#");
+    }
 }

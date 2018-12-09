@@ -1,23 +1,25 @@
 package tests;
 
-import core.GroupMainPage;
-import core.LoginMainPage;
-import core.UserMainPage;
+import core.pages.MyGroupMainPage;
+import core.pages.LoginMainPage;
+import core.pages.MyMainPage;
 import model.TestBot;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class GroupTest extends TestBase {
 
+    @Ignore
     @Test
     public void testGroup() {
         new LoginMainPage(driver).doLogin(new TestBot("kobalt31@mail.ru", "2017OdnoPassword!#"));
-        new UserMainPage(driver).clickGroups();
-        GroupMainPage groupMainPage = new GroupMainPage(driver);
-        groupMainPage.clickCreateButton();
-        groupMainPage.clickPublicPageType();
-        groupMainPage.typeGroupName();
-        groupMainPage.typeGroupDescription();
-        groupMainPage.clickCreateGroup();
+        new MyMainPage(driver).clickGroups();
+        MyGroupMainPage myGroupMainPage = new MyGroupMainPage(driver);
+        myGroupMainPage.clickCreateButton();
+        myGroupMainPage.clickPublicPageType();
+        myGroupMainPage.typeGroupName();
+        myGroupMainPage.typeGroupDescription();
+        myGroupMainPage.clickCreateGroup();
     }
 
 }

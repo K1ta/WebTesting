@@ -1,25 +1,47 @@
 package core;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-abstract class HelperBase {
-    WebDriver driver;
+import java.util.List;
+
+public abstract class HelperBase {
+    protected WebDriver driver;
+    protected long WAIT_TIME = 5;
     private boolean acceptNextAlert = true;
+    private Actions actions;
 
-    HelperBase(WebDriver driver) {
+    protected HelperBase(WebDriver driver) {
         this.driver = driver;
+        actions = new Actions(driver);
         check();
     }
 
     protected abstract void check();
 
-    void type(String name, By locator) {
-        driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(name);
+    protected void type(String text, By locator) {
+        WebElement element = driver.findElement(locator);
+        if (!element.isDisplayed()) {
+            actions.moveToElement(element);
+        }
+        new WebDriverWait(driver, WAIT_TIME)
+                .until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
+        element.sendKeys(text);
     }
 
-    void click(By locator) {
-        driver.findElement(locator).click();
+    protected void click(By locator) {
+        WebElement element = driver.findElement(locator);
+        if (!element.isDisplayed()) {
+            actions.moveToElement(element);
+        }
+        new WebDriverWait(driver, WAIT_TIME)
+                .until(ExpectedConditions.elementToBeClickable(locator)).click();
+    }
+
+    protected List<WebElement> get(By locator) {
+        return driver.findElements(locator);
     }
 
     protected boolean isElementPresent(By by) {

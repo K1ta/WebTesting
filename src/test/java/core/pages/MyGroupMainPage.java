@@ -1,5 +1,6 @@
-package core;
+package core.pages;
 
+import core.HelperBase;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GroupMainPage extends HelperBase {
+public class MyGroupMainPage extends HelperBase {
 
     private static final By CREATE_GROUP = By.xpath(".//*[contains(@href,'st.layer.cmd=PopLayerCreateAltGroup')]");
     private static final By PAGE_TYPE = By.xpath("//*[contains(@data-l,'t,PAGE')]");
@@ -15,17 +16,12 @@ public class GroupMainPage extends HelperBase {
     private static final By GROUP_DESCRIPTION = By.id("field_description");
     private static final By CREATE_NEW_GROUP = By.id("hook_FormButton_button_create");
 
-    public GroupMainPage(WebDriver driver) {
+    public MyGroupMainPage(WebDriver driver) {
         super(driver);
     }
 
     protected void check() {
-        (new WebDriverWait(driver, 5)).until(new ExpectedCondition<Boolean>() {
-
-            public Boolean apply(WebDriver driver) {
-                return isElementPresent(CREATE_GROUP);
-            }
-        });
+        (new WebDriverWait(driver, 5)).until((ExpectedCondition<Boolean>) driver -> isElementPresent(CREATE_GROUP));
 
         (new WebDriverWait(driver, 5))
                 .until(ExpectedConditions.visibilityOfElementLocated(CREATE_GROUP));
