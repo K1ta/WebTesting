@@ -1,6 +1,7 @@
 package core.pages;
 
 import core.HelperBase;
+import core.MyAboutPageFactory;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,9 +36,9 @@ public class MyMainPage extends HelperBase {
         click(MORE_BUTTON);
     }
 
-    public MyAboutPage clickAbout() {
+    public IAboutPage clickAbout() {
         click(ABOUT_BUTTON);
-        return new MyAboutPage(driver);
+        return MyAboutPageFactory.get(driver);
     }
 
 }

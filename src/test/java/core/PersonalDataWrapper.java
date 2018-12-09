@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 public class PersonalDataWrapper extends HelperBase {
 
     private By SEX_MALE = By.xpath("//*[@name='fr.gender' and @value=1]");
@@ -87,6 +89,10 @@ public class PersonalDataWrapper extends HelperBase {
     }
 
     public boolean error() {
-        return isElementPresent(ERROR);
+        // dont want to wait too long
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        boolean res = isElementPresent(ERROR);
+        driver.manage().timeouts().implicitlyWait(WAIT_TIME, TimeUnit.SECONDS);
+        return res;
     }
 }

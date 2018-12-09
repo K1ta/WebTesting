@@ -1,5 +1,10 @@
 package model;
 
+import tests.TestBase;
+
+import java.io.IOException;
+import java.util.Properties;
+
 public class TestBot {
     private final String mail;
     private final String password;
@@ -18,6 +23,14 @@ public class TestBot {
     }
 
     public static TestBot getDefault() {
-        return new TestBot("kobalt31@mail.ru", "2017OdnoPassword!#");
+        Properties properties = new Properties();
+        try {
+            properties.load(TestBot.class.getClassLoader().getResourceAsStream("login.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String login = properties.getProperty("login");
+        String password = properties.getProperty("password");
+        return new TestBot(login, password);
     }
 }

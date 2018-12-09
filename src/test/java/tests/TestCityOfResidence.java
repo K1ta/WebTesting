@@ -1,6 +1,7 @@
 package tests;
 
 import core.PersonalDataWrapper;
+import core.pages.IAboutPage;
 import core.pages.MyAboutPage;
 import core.pages.LoginMainPage;
 import core.pages.MyMainPage;
@@ -14,7 +15,7 @@ public class TestCityOfResidence extends TestBase {
     public void saving() {
         MyMainPage myMainPage = new LoginMainPage(driver).doLogin(TestBot.getDefault());
         myMainPage.clickMore();
-        MyAboutPage myAboutPage = myMainPage.clickAbout();
+        IAboutPage myAboutPage = myMainPage.clickAbout();
         String expected = "Санкт-Петербург";
         PersonalDataWrapper wrapper = myAboutPage.modifyPersonalData();
         wrapper.setCityOfResidence(expected);
@@ -26,7 +27,7 @@ public class TestCityOfResidence extends TestBase {
     public void notSaving() {
         MyMainPage myMainPage = new LoginMainPage(driver).doLogin(TestBot.getDefault());
         myMainPage.clickMore();
-        MyAboutPage myAboutPage = myMainPage.clickAbout();
+        IAboutPage myAboutPage = myMainPage.clickAbout();
         String expected = myAboutPage.getCityOfResidence();
         PersonalDataWrapper wrapper = myAboutPage.modifyPersonalData();
         wrapper.setCityOfResidence("Ульяновск");

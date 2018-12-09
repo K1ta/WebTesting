@@ -38,8 +38,8 @@ public abstract class HelperBase {
         if (!element.isDisplayed()) {
             actions.moveToElement(element);
         }
-        new WebDriverWait(driver, WAIT_TIME)
-                .until(ExpectedConditions.elementToBeClickable(locator)).click();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
     protected List<WebElement> get(By locator) {

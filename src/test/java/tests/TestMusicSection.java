@@ -1,5 +1,6 @@
 package tests;
 
+import core.pages.IAboutPage;
 import core.pages.MyAboutPage;
 import core.pages.LoginMainPage;
 import core.pages.MyMainPage;
@@ -16,7 +17,7 @@ public class TestMusicSection extends TestBase {
     public void testMusicSection() {
         MyMainPage myMainPage = new LoginMainPage(driver).doLogin(TestBot.getDefault());
         myMainPage.clickMore();
-        MyAboutPage myAboutPage = myMainPage.clickAbout();
+        IAboutPage myAboutPage = myMainPage.clickAbout();
         myAboutPage.clearInterestSection("Музыка");
         myAboutPage.typeInterestSection("Музыка", "test1");
         myAboutPage.clickAddInterestSection("Музыка");

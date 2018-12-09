@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAboutPage extends HelperBase {
+public class MyAboutPage extends HelperBase implements IAboutPage {
 
     private static final By PROFILE = By.xpath("//*[@class='compact-profile']");
     private static final By HOMETOWN = By.xpath("//*[@class='user-profile_i'][2]//*[@data-type='TEXT']");

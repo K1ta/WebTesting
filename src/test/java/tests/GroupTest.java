@@ -1,5 +1,6 @@
 package tests;
 
+import core.MyAboutPageFactory;
 import core.pages.MyGroupMainPage;
 import core.pages.LoginMainPage;
 import core.pages.MyMainPage;
@@ -12,7 +13,7 @@ public class GroupTest extends TestBase {
     @Ignore
     @Test
     public void testGroup() {
-        new LoginMainPage(driver).doLogin(new TestBot("kobalt31@mail.ru", "2017OdnoPassword!#"));
+        new LoginMainPage(driver).doLogin(TestBot.getDefault());
         new MyMainPage(driver).clickGroups();
         MyGroupMainPage myGroupMainPage = new MyGroupMainPage(driver);
         myGroupMainPage.clickCreateButton();
