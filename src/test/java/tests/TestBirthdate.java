@@ -3,13 +3,10 @@ package tests;
 import core.PersonalDataWrapper;
 import core.pages.IAboutPage;
 import core.pages.LoginMainPage;
-import core.pages.MyAboutPage;
 import core.pages.MyMainPage;
 import model.TestBot;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.IOException;
 
 public class TestBirthdate extends TestBase {
 

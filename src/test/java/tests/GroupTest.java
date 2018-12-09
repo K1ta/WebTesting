@@ -1,6 +1,5 @@
 package tests;
 
-import core.MyAboutPageFactory;
 import core.pages.MyGroupMainPage;
 import core.pages.LoginMainPage;
 import core.pages.MyMainPage;

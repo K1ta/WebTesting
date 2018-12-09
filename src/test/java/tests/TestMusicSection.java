@@ -1,7 +1,6 @@
 package tests;
 
 import core.pages.IAboutPage;
-import core.pages.MyAboutPage;
 import core.pages.LoginMainPage;
 import core.pages.MyMainPage;
 import model.TestBot;

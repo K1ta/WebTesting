@@ -1,7 +1,5 @@
 package model;
 
-import tests.TestBase;
-
 import java.io.IOException;
 import java.util.Properties;
 
