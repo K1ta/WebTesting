@@ -1,5 +1,6 @@
 package core;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -34,7 +35,17 @@ public class PersonalDataWrapper extends HelperBase {
 
     @Override
     protected void check() {
+        Assert.assertTrue("Поле ввода имени не загрузилось", wait
+                .until(driver -> isElementPresent(NAME)));
 
+        Assert.assertTrue("Поле ввода фамилии не загрузилось", wait
+                .until(driver -> isElementPresent(SURNAME)));
+
+        Assert.assertTrue("Поле ввода города проживания не загрузилось", wait
+                .until(driver -> isElementPresent(CITY_OF_RESIDENCE)));
+
+        Assert.assertTrue("Поле ввода родного города не загрузилось", wait
+                .until(driver -> isElementPresent(HOMETOWN)));
     }
 
     public void setSex(Sex sex) {
