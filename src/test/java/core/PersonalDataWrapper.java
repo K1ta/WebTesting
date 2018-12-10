@@ -87,10 +87,6 @@ public class PersonalDataWrapper extends HelperBase {
     }
 
     public boolean error() {
-        // dont want to wait too long
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        boolean res = isElementPresent(ERROR);
-        driver.manage().timeouts().implicitlyWait(WAIT_TIME, TimeUnit.SECONDS);
-        return res;
+        return isElementPresent(ERROR);
     }
 }

@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,14 +91,14 @@ public class MyAboutPage extends HelperBase implements IAboutPage {
     public void clickAddInterestSection(String section) {
         By locator = By.xpath(INTEREST_SECTION_START + section + INTEREST_SECTION_END + INTEREST_SECTION_ADD);
         click(locator);
-        new WebDriverWait(driver, 5).until(ExpectedConditions.stalenessOf(driver.findElement(locator)));
+        wait.until(ExpectedConditions.stalenessOf(driver.findElement(locator)));
     }
 
     public void clearInterestSection(String section) {
         By locator = By.xpath(INTEREST_SECTION_START + section + INTEREST_SECTION_END + INTEREST_SECTION_DELETE);
         while (isElementPresent(locator)) {
             click(locator);
-            new WebDriverWait(driver, 5).until(ExpectedConditions.stalenessOf(driver.findElement(locator)));
+            wait.until(ExpectedConditions.stalenessOf(driver.findElement(locator)));
         }
     }
 
